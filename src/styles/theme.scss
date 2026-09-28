@@ -17,6 +17,9 @@ $mq-violet-darker: #614174;
 $mq-violet-soft: #f3ecf8;
 $mq-mauve: #8d7a9c;
 
+$mq-terracotta: #c17a54;
+$mq-terracotta-dark: #a9613e;
+
 $mq-amber: #a8752f;
 $mq-rose: #a8496b;
 
@@ -33,7 +36,7 @@ $family-secondary: $mq-font-sans;
 
 $primary: $mq-violet;
 $link: $mq-violet-dark;
-$info: $mq-mauve;
+$info: $mq-terracotta;
 $success: $mq-violet-darker;
 $warning: $mq-amber;
 $danger: $mq-rose;
@@ -50,9 +53,9 @@ $text-strong: $mq-ink;
 $border: $mq-border;
 $border-light: $mq-border;
 
-$radius-small: 6px;
-$radius: 8px;
-$radius-large: 14px;
+$radius-small: 8px;
+$radius: 10px;
+$radius-large: 18px;
 $radius-rounded: 999px;
 
 $link-hover: $mq-violet-dark;
@@ -78,6 +81,7 @@ h1, h2, h3 {
 
 .title {
   color: $mq-ink;
+  font-weight: 700;
 }
 
 .subtitle,
@@ -105,6 +109,18 @@ a:hover {
 .button.is-primary:active,
 .button.is-primary.is-active {
   background-color: $mq-violet-dark;
+}
+
+// Botones "info" (Modo por Lotes, Importar/Exportar…) con un
+// acento terracota puntual que distingue las acciones secundarias
+.button.is-info {
+  background-color: $mq-terracotta;
+}
+.button.is-info:hover,
+.button.is-info.is-hovered,
+.button.is-info:active,
+.button.is-info.is-active {
+  background-color: $mq-terracotta-dark;
 }
 
 // Paneles, tarjetas y modales con fondo cálido y borde suave
