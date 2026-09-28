@@ -14,8 +14,8 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#9a6bb4",
+    "background_color": "#fdfcfa",
     "display": "standalone",
     "start_url": "/qrcode2stl/",
     "scope": "/qrcode2stl/",
