@@ -21,7 +21,7 @@ export default {
   viewOnGithub: 'GitHub',
   shareButtonTitle: 'Comparte esta páxina',
   file: 'arquivo',
-  no: 'no',
+  no: 'non',
   yes: 'si',
   top: 'arriba',
   bottom: 'abaixo',
@@ -43,9 +43,12 @@ export default {
   // Panel de opcións do Código QR
   //
   qrCodeOptionsTitle: 'Opcións do código QR',
-  qrCodeTextPlaceholder: 'O texto para o teu código QR ex:Ola mundo ou https://flxn.de',
+  qrCodeTextPlaceholder: 'O texto para o teu código QR ex: Ola mundo ou https://miguelquiroga.es',
   errorCorrection: 'Corrección do erro',
-  errorCorrectionHelp: 'Cato mais alta sexa a corrección do erro, mais denso será o código QR.',
+  errorCorrectionHelp: 'Canto máis alta sexa a corrección do erro, máis denso será o código QR.',
+  useEscapeSequences: 'Secuencias de escape',
+  useEscapeSequencesToggle: 'Interpretar secuencias de escape',
+  useEscapeSequencesHelp: 'Exemplos: \\n (salto de liña), \\t (tabulación), \\r (retorno de carro)',
   optionalFieldsHint: 'Non todos os campos han de ser enchidos.',
   // Wifi
   ssidPlaceholder: 'O nome da rede WiFi',
@@ -129,6 +132,12 @@ export default {
   Se aumentas este valor por encima do 100% (por exemplo, 120%), os bloques formarán illas conectadas que facilitan a impresión do código QR.`,
   icon: 'Icona',
   noIcon: 'Non icona',
+  customIcon: 'Icona personalizada',
+  uploadCustomIcon: 'Subir icona personalizada',
+  selectSvgFile: 'Seleccionar arquivo SVG',
+  customIconUploaded: 'Icona personalizada subida correctamente',
+  invalidSvgFile: 'Arquivo SVG non válido. Selecciona un arquivo SVG válido.',
+  iconUploadError: 'Erro ao subir a icona. Téntao de novo.',
   iconSizeHelp: `
   O tamaño da icona en relación ao ancho total do código QR.
   A icona abusa da corrección de erros integrada do código qr. Se é demasiado grande, o código pode non ser lexible.
@@ -149,14 +158,24 @@ export default {
   mirrorHoles: 'Buratos en espello',
   mirrorHolesHelp: 'Espelle os buratos no lado oposto (por exemplo, para fixalo con parafusos).',
   keychainHoleDiameter: 'Diámetro do oco',
+  keychainMaterialThickness: 'Grosor do material',
+  keychainOffset: 'Desprazamento do saínte',
   nfcIndentation: 'NFC/RFID',
   nfcIndentationHelp: 'Engade unha cavidade na parte inferior da base onde se pode inserir unha etiqueta NFC/RFID.',
   indentation: 'Cavidade',
   nfcIndentationHiddenHelp: 'Crea unha cavidade no interior da base cunha compensación de 1 mm desde a parte inferior da base. Isto permítelle inserir firmemente a etiqueta NFC dentro da propia impresión 3D. Deteña a impresión antes da capa de peche, insira a etiqueta e, a continuación, retome a impresión. Asegúrese de que a profundidade da sangría sexa lixeiramente maior que a propia etiqueta e axuste a profundidade da base en consecuencia.',
-  magnetPockets: 'Ocoss para imans',
-  magnetPocketsHelp: 'Engade 4 ocos redondos para pegar imans na parte inferior da base, un preto de cada esquina.',
-  holeSize: 'Tamano do oco',
+  magnetPockets: 'Ocos para imáns',
+  magnetPocketsHelp: 'Engade 4 ocos redondos para pegar imáns na parte inferior da base, un preto de cada esquina.',
+  holeSize: 'Tamaño do oco',
   offsetFromOuterEdge: 'Distancia desde o bordo exterior',
+  compatibilityMode: 'Modo de compatibilidade',
+  compatibilityModeLabel: 'Xeración de modelo antiga (se tes problemas, por exemplo en TinkerCAD)',
+  compatibilityModeHelp: 'Recentemente melloramos a velocidade de xeración do modelo. Se tes problemas co modelo xerado, podes activar esta opción. Xerará o modelo co método anterior, o que pode solucionar algúns problemas co teu laminador ou software CAD. Isto tamén afecta ao procesamento de iconas: as formas de icona complexas pódense simplificar para mellorar a compatibilidade.',
+  iconCompatibilityWarning: 'Modo de compatibilidade con TinkerCAD activo',
+  iconShapesSimplified: 'as formas da icona simplificáronse',
+  iconHolesRemoved: 'elimináronse os ocos da icona',
+  iconCompatibleProcessing: 'usar o procesamento compatible con TinkerCAD pode simplificar a icona. Desactívao se a icona non se ve como esperabas',
+  monochromeLogoInfo: 'Para obter mellores resultados, sube logotipos monocromos (branco e negro). Os logotipos multicolor poden non funcionar ben coa xeración do código QR.',
 
   //
   // Axustes de exportación
@@ -164,14 +183,16 @@ export default {
   exportTypeHelp: 'Simplemente deixe isto como "binario" para manter o tamaño do ficheiro baixo. Se o teu software ten problemas co ficheiro xerado, podes tentar cambiar esta opción.',
   exportSeparatePartsHelp: 'Se se define como "si", a base e o código qr gardaranse como dúas partes separadas para as impresoras con impresión de dobre extrusión. É posible que o teu navegador solicite permisos para descargar varios ficheiros.',
   separateParts: 'Separar partes',
-  saveAsButton: 'Gardar como STL',
+  saveAsButton: 'Exportar a STL',
+  saveAsImageButton: 'Renderizar a PNG',
 
   //
   // Guía de impresión
   // con etiquetas HTML incluídas!
   //
   printGuideTitle: 'Guía de impresión 3D',
-  printGuideSubtitle: 'Como imprimir un código QR de dúas corescunha única impresora 3D de extrusión simple?',
+  printGuideSubtitle: 'Como imprimir un código QR de dúas cores cunha única impresora 3D de extrusión simple?',
+  printGuideWIPInfo: 'Esta guía está en construción.',
   printGuideWIPInfo: 'Esta guía é un traballo en proceso.',
   printGuideIntro: `
   Podes imprimir obxectos de varias cores incluso con un único extrusor intercambiando o filamento en capas específicas.<br/>
@@ -239,8 +260,20 @@ export default {
   // Modo por Lotes
   //
   batchMode: 'Modo por Lotes',
-  batchModeDescription: 'Xera múltiples códigos QR desde un ficheiro CSV. Cada fila no CSV creará un ficheiro STL separado.',
-  batchHowToTitle: 'Como usar o Modo por Lotes:',
+  batchModeDescription: 'Xera múltiples códigos QR á vez. Usa o modo Simple para códigos QR rápidos de só texto, ou o modo Avanzado para unha personalización completa mediante CSV.',
+  batchModeType: 'Modo',
+  batchModeSimple: 'Simple',
+  batchModeAdvanced: 'Avanzado (CSV)',
+  batchModeSimpleHelp: 'Introduce un texto de código QR por liña. O resto de axustes (tamaño, estilo, etc.) usarán a túa configuración actual.',
+  batchModeAdvancedHelp: 'Sube un ficheiro CSV con control total sobre os axustes de cada código QR. Usa o modelo para ver os campos dispoñibles.',
+  batchSimpleHowToTitle: 'Como usar o modo Simple:',
+  batchSimpleStep1: 'Configura o aspecto do teu código QR no formulario principal (tamaño, borde, texto, etc.).',
+  batchSimpleStep2: 'Introduce un texto de código QR por liña na área de texto de abaixo.',
+  batchSimpleStep3: 'Preme "Xerar Todo" para crear os teus códigos QR nun arquivo ZIP.',
+  batchSimpleTextareaLabel: 'Textos dos códigos QR (un por liña)',
+  batchSimpleTextareaPlaceholder: 'https://exemplo.com/paxina1\nhttps://exemplo.com/paxina2\nOla mundo\n...',
+  batchSimpleTextareaHelp: 'Xerarase(n) {count} código(s) QR',
+  batchHowToTitle: 'Como usar o modo Avanzado:',
   batchStep1: 'Primeiro, configura os axustes do teu código QR no formulario principal (tipo de contido, opcións do modelo, etc.). Estes usaranse como valores predeterminados.',
   batchStep2: 'Descarga o modelo CSV de abaixo. Contén todos os campos dispoñibles para o teu tipo de contido seleccionado.',
   batchStep3: 'Enche o CSV cos teus datos. Cada fila convértese nun código QR. Deixa celas baleiras para usar os teus axustes predeterminados.',
@@ -278,6 +311,10 @@ export default {
   batchNoDataRows: 'O ficheiro CSV debe conter polo menos unha fila de cabeceira e unha fila de datos',
   batchMissingRequiredField: 'O CSV debe conter polo menos unha destas columnas: {fields}',
   batchEmptyQRText: 'Contido do código QR baleiro',
+  batchDownloadCountdown: 'A descarga comezará en {seconds} segundos.',
+  batchDownloadStarting: 'A descarga vai comezar agora.',
+  batchThankYou: 'Grazas por usar esta ferramenta.',
+  batchAdblockMessage: '',
   cancel: 'Cancelar',
   close: 'Pechar',
   or: 'ou',
