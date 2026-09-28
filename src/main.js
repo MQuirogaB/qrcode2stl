@@ -6,7 +6,7 @@ import App from './App.vue';
 
 import './main.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-import 'bulma/css/bulma.css';
+import './styles/theme.scss';
 
 Vue.config.productionTip = false;
 
