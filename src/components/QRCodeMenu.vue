@@ -2,15 +2,6 @@
 <template>
   <div id="qrcodeMenu">
 
-    <button
-      class="button is-info is-medium is-fullwidth mb-3"
-      @click="openQRScanner">
-      <span class="icon">
-        <i class="fa fa-camera"></i>
-      </span>
-      <span>{{$t('copyExistingQRCode')}}</span>
-    </button>
-
     <!-- QR Code Options -->
     <QRCodeOptionsPanel :options="options" />
 
@@ -55,8 +46,6 @@
       </figure>
     </div>
 
-    <ScannerModal v-if="scannerModalVisible" @decode="onDecode"/>
-
     <BatchModeModal
       v-if="batchModalVisible"
       :options="options"
@@ -78,7 +67,6 @@ import { diff } from 'deep-object-diff';
 import merge from 'deepmerge';
 import JSZip from 'jszip';
 import modelWorker from '@/model-worker';
-import { bus } from '../main';
 import {
   save, saveAsString, saveAsArrayBuffer, trimIconShapesBounds, applyPreviewMaterial,
 } from '../utils';
@@ -185,7 +173,6 @@ export default {
   components: {
     QRCodeOptionsPanel: () => import('./QRCodeOptionsPanel.vue'),
     QRCodeModelOptionsPanel: () => import('./QRCodeModelOptionsPanel.vue'),
-    ScannerModal: () => import('./ScannerModal.vue'),
     BatchModeModal: () => import('./BatchModeModal.vue'),
   },
   data() {
@@ -206,7 +193,6 @@ export default {
       blockHeight: null,
       isGenerating: false,
       generateError: null,
-      scannerModalVisible: false,
       batchModalVisible: false,
       iconCompatibilityStatus: null,
     };
@@ -454,15 +440,8 @@ export default {
         }
       }
     },
-    openQRScanner() {
-      this.scannerModalVisible = true;
-    },
     openBatchMode() {
       this.batchModalVisible = true;
-    },
-    onDecode(decodedText) {
-      this.options.text = decodedText;
-      this.options.activeTabIndex = 0;
     },
     wifiQREscape(str) {
       const regex = /([:|\\|;|,|"])/gm;
@@ -642,8 +621,6 @@ export default {
   },
   async mounted() {
     this.initWorker();
-    bus.$on('openScannerModal', () => { this.scannerModalVisible = true; });
-    bus.$on('closeScannerModal', () => { this.scannerModalVisible = false; });
   },
 };
 </script>

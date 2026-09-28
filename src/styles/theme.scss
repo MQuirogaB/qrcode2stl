@@ -13,10 +13,10 @@ $mq-card: #fbfbfa;
 
 $mq-violet: #9a6bb4;
 $mq-violet-dark: #7d5695;
+$mq-violet-darker: #614174;
 $mq-violet-soft: #f3ecf8;
+$mq-mauve: #8d7a9c;
 
-$mq-teal: #2f7d6b;
-$mq-blue: #3b6fa8;
 $mq-amber: #a8752f;
 $mq-rose: #a8496b;
 
@@ -32,9 +32,9 @@ $family-primary: $mq-font-sans;
 $family-secondary: $mq-font-sans;
 
 $primary: $mq-violet;
-$link: $mq-blue;
-$info: $mq-blue;
-$success: $mq-teal;
+$link: $mq-violet-dark;
+$info: $mq-mauve;
+$success: $mq-violet-darker;
 $warning: $mq-amber;
 $danger: $mq-rose;
 
@@ -87,10 +87,10 @@ p.subtitle {
 }
 
 a {
-  color: $mq-blue;
+  color: $mq-violet-dark;
 }
 a:hover {
-  color: $mq-violet-dark;
+  color: $mq-violet-darker;
 }
 
 // Botones "primary" (modo QR/Spotify/Text, exportar, generar...) con el
