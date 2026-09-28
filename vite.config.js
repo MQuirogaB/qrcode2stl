@@ -6,7 +6,7 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 export default defineConfig({
   plugins: [vue(), tailwindcss(), nodePolyfills()],
-  base: '/',
+  base: '/qrcode2stl/',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
