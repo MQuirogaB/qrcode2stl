@@ -196,6 +196,15 @@ export default {
       return str.length > 30 ? str.substring(0, 30) + '...' : str;
     },
 
+    sanitizeFilename(text) {
+      const cleaned = String(text)
+        .trim()
+        .replace(/[\\/:*?"<>|]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+      return cleaned || 'texto';
+    },
+
     async startBatchGeneration() {
       this.isProcessing = true;
       this.aborted = false;
@@ -209,6 +218,16 @@ export default {
 
       const lines = this.simpleTextLines;
       this.totalCount = lines.length;
+
+      // Count how many lines share the same sanitized name, so
+      // duplicates get a numbered suffix (e.g. "Miguel 001", "Miguel 002")
+      // while unique names keep their plain text as the filename.
+      const baseNames = lines.map(line => this.sanitizeFilename(line));
+      const nameCounts = {};
+      baseNames.forEach((name) => {
+        nameCounts[name] = (nameCounts[name] || 0) + 1;
+      });
+      const nameOccurrence = {};
 
       for (let i = 0; i < lines.length; i++) {
         if (this.aborted) break;
@@ -224,7 +243,12 @@ export default {
 
           const meshes = await this.generateModelAsync(modelWorker, rowOptions);
 
-          const filename = `texto_${String(i + 1).padStart(3, '0')}`;
+          const baseName = baseNames[i];
+          let filename = baseName;
+          if (nameCounts[baseName] > 1) {
+            nameOccurrence[baseName] = (nameOccurrence[baseName] || 0) + 1;
+            filename = `${baseName} ${String(nameOccurrence[baseName]).padStart(3, '0')}`;
+          }
           await this.exportToBuffer(meshes, filename);
 
           this.successCount++;
