@@ -7,8 +7,8 @@ export default {
   //
   // General
   //
-  title: 'Generador de Códigos 3D',
-  subtitle: 'Exporta códigos QR o códigos de Spotify como STL para impresión 3D',
+  title: 'Taller3D',
+  subtitle: 'Diseña códigos QR, códigos de Spotify o placas de texto y expórtalos como STL para impresión 3D',
   preview: 'Vista previa',
   controlsHint: 'Usa el ratón para rotar',
   changeLanguage: 'Cambiar idioma',
