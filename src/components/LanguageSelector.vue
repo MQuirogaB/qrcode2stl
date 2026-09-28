@@ -15,10 +15,6 @@
         <a class="dropdown-item" v-for="locale in locales" :key="locale" @click="changeLanguage(locale)">
           <img :src="'flags/gif/' + locale + '.gif'"/> {{ $i18n.messages[locale]['languageLocalName'] }}
         </a>
-        <hr class="dropdown-divider">
-         <a href="https://github.com/flxn/qrcode2stl#contribute-a-translation" class="dropdown-item" rel="nofollow noopener" target="_blank">
-          <i class="fab fa-github"></i> {{$t('contributeTranslation')}}
-        </a>
       </div>
     </div>
   </div>
