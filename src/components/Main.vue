@@ -37,52 +37,7 @@
             <h2 class="title">{{$t('preview')}}</h2>
             <p class="subtitle" role="note">{{ $t("controlsHint") }}</p>
           </div>
-          <div class="column is-2" v-if="showExport">
-            <div class="field">
-              <div class="field-label is-normal has-text-left">
-                <label class="label" :title="$t('exportTypeHelp')">
-                  STL {{ $t('file') }}
-                  <span class="help-icon icon has-text-info"><i class="fas fa-info-circle"></i></span>
-                </label>
-
-              </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control">
-                    <div class="select">
-                      <select v-model="stlType">
-                        <option>binary</option>
-                        <option>ASCII</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column is-2" v-if="showExport">
-            <div class="field">
-              <div class="field-label is-normal has-text-left">
-                <label class="label" :title="$t('exportSeparatePartsHelp')">
-                  {{$t('separateParts')}}?
-                  <span class="help-icon icon has-text-info"><i class="fas fa-info-circle"></i></span>
-                </label>
-              </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control">
-                    <div class="select">
-                      <select v-model="multipleParts">
-                        <option v-bind:value="false">{{$t('no')}}</option>
-                        <option v-bind:value="true">{{$t('yes')}}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column is-5" style="padding-top: 2rem" v-if="showExport">
+          <div class="column is-12" style="padding-top: 2rem" v-if="showExport">
             <button class="button export-button is-primary is-medium" @click="exportSTL">
               <span class="icon">
                 <i class="fa fa-cube"></i>

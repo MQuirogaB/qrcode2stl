@@ -39,22 +39,6 @@
             <p class="help">{{ batchModeType === 'simple' ? $t('batchModeSimpleHelp') : $t('batchModeAdvancedHelp') }}</p>
           </div>
 
-          <!-- Separate Parts Toggle -->
-          <div class="field">
-            <label class="label">{{ $t('separateParts') }}</label>
-            <div class="control">
-              <label class="radio">
-                <input type="radio" name="separateParts" :value="false" v-model="localMultipleParts" />
-                {{ $t('no') }}
-              </label>
-              <label class="radio">
-                <input type="radio" name="separateParts" :value="true" v-model="localMultipleParts" />
-                {{ $t('yes') }}
-              </label>
-            </div>
-            <p class="help">{{ $t('exportSeparatePartsHelp') }}</p>
-          </div>
-
           <hr />
 
           <!-- Simple Mode: Textarea for text entries -->
