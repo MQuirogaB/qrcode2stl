@@ -105,8 +105,13 @@
 
     <!-- 3D Options -->
     <nav class="panel">
-      <p class="panel-heading">{{ $t("modelOptions") }}</p>
-      <div class="panel-block">
+      <p class="panel-heading is-clickable" @click="modelOptionsCollapsed = !modelOptionsCollapsed">
+        <span>{{ $t("modelOptions") }}</span>
+        <span class="icon panel-heading-toggle">
+          <i :class="['fas', modelOptionsCollapsed ? 'fa-chevron-down' : 'fa-chevron-up']"></i>
+        </span>
+      </p>
+      <div class="panel-block" v-show="!modelOptionsCollapsed">
         <div class="columns" style="width: 100%">
           <div class="column">
             <div class="model-options-title">
@@ -635,6 +640,7 @@ export default {
       generateError: null,
       changelogModalVisible: false,
       batchModalVisible: false,
+      modelOptionsCollapsed: false,
     };
   },
 
@@ -766,6 +772,18 @@ export default {
 <style scoped>
 #main {
   margin-top: 20px;
+}
+
+.panel-heading.is-clickable {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.panel-heading-toggle {
+  transition: transform 0.15s ease;
 }
 
 .export-button {

@@ -1,7 +1,12 @@
 <template>
   <nav class="panel">
-    <p class="panel-heading">{{$t('modelOptions')}}</p>
-    <div class="panel-block">
+    <p class="panel-heading is-clickable" @click="collapsed = !collapsed">
+      <span>{{$t('modelOptions')}}</span>
+      <span class="icon panel-heading-toggle">
+        <i :class="['fas', collapsed ? 'fa-chevron-down' : 'fa-chevron-up']"></i>
+      </span>
+    </p>
+    <div class="panel-block" v-show="!collapsed">
       <div class="columns" style="width: 100%">
         <div class="column">
           <div class="model-options-title">
@@ -565,13 +570,27 @@ export default {
     unit: String,
   },
   data() {
-    return {};
+    return {
+      collapsed: false,
+    };
   },
   methods: {},
 };
 </script>
 
 <style>
+.panel-heading.is-clickable {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.panel-heading-toggle {
+  transition: transform 0.15s ease;
+}
+
 .help-icon {
   margin-top: 3px;
   margin-left: 5px;
