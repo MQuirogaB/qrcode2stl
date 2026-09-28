@@ -37,7 +37,7 @@
             <h2 class="title">{{$t('preview')}}</h2>
             <p class="subtitle" role="note">{{ $t("controlsHint") }}</p>
           </div>
-          <div class="column is-12" style="padding-top: 2rem" v-if="showExport">
+          <div class="column is-5" style="padding-top: 2rem" v-if="showExport">
             <button class="button export-button is-primary is-medium" @click="exportSTL">
               <span class="icon">
                 <i class="fa fa-cube"></i>
