@@ -640,7 +640,7 @@ export default {
       generateError: null,
       changelogModalVisible: false,
       batchModalVisible: false,
-      modelOptionsCollapsed: false,
+      modelOptionsCollapsed: true,
     };
   },
 

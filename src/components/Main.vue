@@ -37,8 +37,8 @@
             <h2 class="title">{{$t('preview')}}</h2>
             <p class="subtitle" role="note">{{ $t("controlsHint") }}</p>
           </div>
-          <div class="column is-5" style="padding-top: 2rem" v-if="showExport">
-            <button class="button export-button is-primary is-medium" @click="exportSTL">
+          <div class="column is-5" style="padding-top: 1rem" v-if="showExport">
+            <button class="button export-button is-primary is-large" @click="exportSTL">
               <span class="icon">
                 <i class="fa fa-cube"></i>
               </span>
@@ -298,7 +298,7 @@ export default {
 
 <style>
 #main {
-  margin-top: 20px;
+  margin-top: 4px;
   padding-bottom: 20px;
 }
 
@@ -331,6 +331,14 @@ export default {
 
 .export-button {
   margin: 0 10px;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(154, 107, 180, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.export-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(154, 107, 180, 0.45);
 }
 
 #notifications {

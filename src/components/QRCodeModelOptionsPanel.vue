@@ -897,7 +897,7 @@ export default {
   },
   data() {
     return {
-      collapsed: false,
+      collapsed: true,
       icons: [
         'wifi',
         'user',
