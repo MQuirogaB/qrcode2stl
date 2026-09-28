@@ -103,29 +103,9 @@
           <hr>
         </div>
         <div id="container3d" :class="{ 'is-loading': isGenerating }" role="img" :aria-label="$t('preview')"></div>
-        <div class="internal-nav-links">
-          <a class="title is-4" href="#printguide"><i class="fa fa-angle-double-down"></i> {{$t('scrollDownForGuide')}}</a>
-          <a class="title is-4" href="#faq"><i class="fa fa-angle-double-down"></i> {{$t('faqTitle')}}</a>
-          <a class="title is-4" href="#changelog"><i class="fa fa-angle-double-down"></i> Changelog</a>
-        </div>
         <div v-html="modelAd" class="mt-4 has-text-centered"></div>
       </div>
     </article>
-
-    <section id="printguide">
-      <PrintGuide />
-    </section>
-
-    <section id="faq">
-      <FAQ />
-    </section>
-
-    <section id="changelog" class="pt-4 content container">
-      <h2 class="title">Changelog</h2>
-      <hr>
-      <MarkdownRenderer :source="changelog" class="content" />
-    </section>
-    <ChangelogModal v-if="changelogModalVisible"/>
     <ExportModal v-if="exportModalVisible"/>
   </main>
 </template>
@@ -135,11 +115,8 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { STLExporter } from 'three/examples/jsm/exporters/STLExporter';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment';
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import changelog from '../../CHANGELOG.md?raw';
 import { bus } from '../main';
 import { getRandomBanner, saveAsArrayBuffer, trimCanvas } from '../utils';
-import ChangelogModal from './ChangelogModal.vue';
 
 export default {
   name: 'Main',
@@ -150,11 +127,7 @@ export default {
     QRCodeMenu: () => import('./QRCodeMenu.vue'),
     SpotifyMenu: () => import('./SpotifyMenu.vue'),
     TextMenu: () => import('./TextMenu.vue'),
-    PrintGuide: () => import('./PrintGuide.vue'),
-    FAQ: () => import('./FAQ.vue'),
-    ChangelogModal,
     ExportModal: () => import('./ExportModal.vue'),
-    MarkdownRenderer: () => import('./MarkdownRenderer.vue'),
   },
   data() {
     return {
@@ -162,8 +135,6 @@ export default {
       showExport: true,
       stlType: 'binary',
       multipleParts: false,
-      changelogModalVisible: false,
-      changelog: changelog.split('\n').slice(3).join('\n'),
       exportModalVisible: false,
       isGenerating: false,
       modelAd: '',
@@ -180,8 +151,6 @@ export default {
     };
   },
   created() {
-    bus.$on('openChangelogModal', () => { this.changelogModalVisible = true; });
-    bus.$on('closeChangelogModal', () => { this.changelogModalVisible = false; });
     bus.$on('openExportModal', () => { this.exportModalVisible = true; });
     bus.$on('closeExportModal', () => { this.exportModalVisible = false; });
 
