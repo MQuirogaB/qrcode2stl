@@ -542,6 +542,24 @@
       <span>{{ $t("generateButton") }}</span>
     </button>
 
+    <button
+      class="button is-info is-large ml-4"
+      @click="openBatchMode"
+    >
+      <span class="icon">
+        <i class="fa fa-layer-group"></i>
+      </span>
+      <span>{{ $t('batchMode') }}</span>
+    </button>
+
+    <TextBatchModeModal
+      v-if="batchModalVisible"
+      :options="options"
+      :exporter="exporter"
+      :stlType="stlType"
+      @close="batchModalVisible = false"
+    />
+
   </div>
 </template>
 
@@ -599,7 +617,9 @@ export default {
     scene: Object,
     exporter: Object,
   },
-  components: {},
+  components: {
+    TextBatchModeModal: () => import('./TextBatchModeModal.vue'),
+  },
   data() {
     return {
       options: JSON.parse(JSON.stringify(defaultOptions)),
@@ -614,6 +634,7 @@ export default {
       isGenerating: false,
       generateError: null,
       changelogModalVisible: false,
+      batchModalVisible: false,
     };
   },
 
@@ -731,6 +752,9 @@ export default {
           saveAsString(result, filename);
         }
       }
+    },
+    openBatchMode() {
+      this.batchModalVisible = true;
     },
   },
   async mounted() {
